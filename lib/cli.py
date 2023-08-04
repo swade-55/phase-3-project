@@ -22,10 +22,10 @@ session = Session()
 if __name__ == '__main__':    
     print("Welcome to Asset Management! Please enter ee_id to begin!")
     employee_id = int(input())
+    print("Please Enter 1-CheckOut,2-CheckIn,3-Check Inventory, 4- Exit Application")
+    x = input()
     
-    if employee_id:
-        print("Please Enter 1-CheckOut,2-CheckIn,3-Check Inventory")
-        x = input()
+    while x != "4":
         
         if (x == "1"):
             print("Type Asset Type")
@@ -66,7 +66,9 @@ if __name__ == '__main__':
                 user_id = new_user,
                 locker_id = new_locker_id,                
             )
-            
+            session.query(Locker).update({
+                Locker.asset_count:Locker.asset_count+1
+            })
             session.add(new_asset)
             session.commit()            
         elif(x=="3"):
@@ -74,12 +76,11 @@ if __name__ == '__main__':
             lockerName= input()
             locker_count = session.query(Locker).filter(Locker.locker_name==lockerName)
             for record in locker_count:
-                print(f"Locker balance is {record.asset_count} assets!")
-            
+                print(f"Locker balance is {record.asset_count} assets!")            
         else:
             print("You entered a number that wasn't recognized! Please try again!")
     else:
-        print("Incorrect combo! Please try again.")
+        print("You exited the application!")
     
 # Questions:
 # how to redirect user to main menu when they're done with transaction?
