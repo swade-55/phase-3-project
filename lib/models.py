@@ -11,14 +11,6 @@ convention = {
 engine = create_engine('sqlite:///asset_management.db')
 
 Base = declarative_base()
-
-# asset_user = Table(
-#     'asset_users',
-#     Base.metadata,
-#     Column('locker_id', ForeignKey('lockers.locker_id'), primary_key=True),
-#     Column('ee_id', ForeignKey('users.ee_id'),primary_key=True),
-#     extend_existing=True
-# )
     
 class User(Base):
     __tablename__ = 'users'
@@ -57,9 +49,6 @@ class Asset(Base):
     asset_id = Column(Integer(),primary_key = True)
     asset_type = Column(String())
     serial_number = Column(Integer())
-    device_location = Column(Integer())
-    slot_location = Column(Integer())
-    owner = Column(String())
     status_changed_at = Column(DateTime(), server_default=func.now())
     user_id = Column(Integer(), ForeignKey('users.ee_id'))
     locker_id = Column(Integer(), ForeignKey('lockers.locker_id'))

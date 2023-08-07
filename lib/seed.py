@@ -43,11 +43,8 @@ if __name__ == '__main__':
     for i in range(50):
         asset = Asset(
             asset_type=random.choice(types),
-            serial_number=random.randint(1005, 1060),
-            device_location= random.randint(1, 10),
-            owner=None, 
-            # how to populate locker_id with actual data?   
-            user_id = 100,
+            serial_number=random.randint(1005, 1060), 
+            user_id = random.randint(1,50),
             locker_id = random.randint(1,2),       
         )
 

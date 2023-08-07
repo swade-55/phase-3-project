@@ -1,8 +1,8 @@
-"""Create DB
+"""Created DB
 
-Revision ID: d7bda3b6e23f
+Revision ID: b14d55c59d7a
 Revises: 
-Create Date: 2023-07-30 14:40:12.789161
+Create Date: 2023-08-07 06:59:12.689034
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd7bda3b6e23f'
+revision = 'b14d55c59d7a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,7 +31,7 @@ def upgrade() -> None:
     sa.Column('full_name', sa.String(), nullable=True),
     sa.Column('user_group', sa.String(), nullable=True),
     sa.Column('badge_number', sa.Integer(), nullable=True),
-    sa.Column('checked_out_asset', sa.String(), nullable=True),
+    sa.Column('checked_out_asset', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('ee_id')
     )
     op.create_table('assets',
@@ -39,8 +39,6 @@ def upgrade() -> None:
     sa.Column('asset_type', sa.String(), nullable=True),
     sa.Column('serial_number', sa.Integer(), nullable=True),
     sa.Column('device_location', sa.Integer(), nullable=True),
-    sa.Column('slot_location', sa.Integer(), nullable=True),
-    sa.Column('owner', sa.String(), nullable=True),
     sa.Column('status_changed_at', sa.DateTime(), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('locker_id', sa.Integer(), nullable=True),
