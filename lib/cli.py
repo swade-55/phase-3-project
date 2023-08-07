@@ -31,7 +31,6 @@ def main():
             # print(res)
             print("Please select asset to check out by asset_id")
             checked_out_item = input()
-            #why do i have to redeclare the employee_id variable?
             employee_id = int(input("Please type eeid to confirm"))
             query = session.query(Asset).filter(Asset.asset_id == checked_out_item)
             updated_record = query.first()
