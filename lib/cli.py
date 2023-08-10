@@ -35,14 +35,9 @@ def main():
             query = session.query(Asset).filter(Asset.asset_id == checked_out_item)
             updated_record = query.first()
             employee_query = session.query(User).filter(User.ee_id==employee_id)
-            employee_updated = employee_query.update({
-                User.checked_out_asset:User.checked_out_asset+1
-            })
             
             session.delete(updated_record)
             session.commit()
-            
-            # why is this not printing out?
             for record in query:
                 print(f"{record.asset_type}(asset id: {record.asset_id}) has been checked out!")
             print(employee_query.first())
